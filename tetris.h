@@ -37,6 +37,7 @@ typedef struct		s_tetris
 	t_sdl			sdl;
 	t_pos			tetriminoPos;
 	int				tetriminoType;
+	SDL_Color		tetriminoColor;
 
 
 	

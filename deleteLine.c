@@ -14,13 +14,26 @@ void	deleteLine(t_tetris *tetris)
 		{
 			sum += map[y][x];
 		}
-		if (sum == 3*10)
+		if (sum == 3 * 10)
 		{
 			for (int x = 1; x < W - 1; x++)
 			{
 				map[y][x] = 0;
 			}
+			int tmpy = y;
+			for (; y > 1; y--)
+			{
+				for (int x = 1; x < W - 1; x++)
+				{
+					map[y][x] = map[y - 1][x];
+				}
+			}
+			y = tmpy + 1;
 		}
+
+		
+		
+		
 	}
 }
 

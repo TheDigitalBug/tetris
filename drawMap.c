@@ -36,20 +36,21 @@ void	drawMap(t_tetris *tetris)
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
 				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 			}
-			else if (map[y][x] == 9) // cube
+			else if (map[y][x] == 9) // tetrimino
 			{
-				SDL_SetRenderDrawColor(tetris->sdl.renderer, 255, 0, 0, 255);
+				
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r, tetris->tetriminoColor.g, tetris->tetriminoColor.b, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
 				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
 				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 			}
-			printf("%d ",map[y][x]);
+//			printf("%d ",map[y][x]);
 
 			rect.x += 30;
 			rect = (SDL_Rect) {rect.x, rect.y, rect.h, rect.w};
 		}
-		printf("\n");
+//		printf("\n");
 		rect.y += 30;
 	}
 
