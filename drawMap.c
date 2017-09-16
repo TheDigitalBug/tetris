@@ -26,6 +26,12 @@ void	drawMap(t_tetris *tetris)
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
 				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 			}
+			else if (map[y][x] == 2) // cube
+			{
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, 255, 0, 0, 255);
+				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
+				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
+			}
 
 			rect.x += 30;
 			rect = (SDL_Rect) {rect.x, rect.y, rect.h, rect.w};

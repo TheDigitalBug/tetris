@@ -37,8 +37,13 @@ typedef struct		s_pos
 typedef struct		s_tetris
 {
 	t_sdl			sdl;
-	t_pos			pac;
-	t_pos			pacMove;
+	t_pos			tetriminoPos;
+	t_pos			tetrimino[4];
+	t_pos			tetriminoPreviousPos[4];
+	int				tetriminoType;
+
+	
+	
 	
 }					t_tetris;
 
