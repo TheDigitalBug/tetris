@@ -2,35 +2,49 @@
 #include "tetris.h"
 
 
-void	initTetriminoCube(t_tetris *tetris)
-{
-	tetris->tetrimino[0] = tetris->tetriminoPos;
-	tetris->tetrimino[1] = (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y};
-	tetris->tetrimino[2] = (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1};
-	tetris->tetrimino[3] =  (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y + 1};
-}
-
-void	putTetriminoCube(t_tetris *tetris)
+int	checkTetrimino(t_tetris *tetris, t_pos pos)
 {
 	extern int map[H][W];
-
-	//set prev pos on map to zero
-	map[tetris->tetrimino[0].y][tetris->tetrimino[0].x] = 0;
-	map[tetris->tetrimino[1].y][tetris->tetrimino[1].x] = 0;
-	map[tetris->tetrimino[2].y][tetris->tetrimino[2].x] = 0;
-	map[tetris->tetrimino[3].y][tetris->tetrimino[3].x] = 0;
+	extern int tetrimino[2][5][5];
 	
-	if (map[tetris->tetriminoPos.y][tetris->tetriminoPos.x] == 0 &&
-		map[tetris->tetriminoPos.y + 1][tetris->tetriminoPos.x] == 0 &&
-		map[tetris->tetriminoPos.y][tetris->tetriminoPos.x + 1] == 0 &&
-		map[tetris->tetriminoPos.y + 1][tetris->tetriminoPos.x + 1] == 0)
+	for (int y = 0; y < 5; y++)
 	{
-		
-	initTetriminoCube(tetris);
-	map[tetris->tetrimino[0].y][tetris->tetrimino[0].x] = 2;
-	map[tetris->tetrimino[1].y][tetris->tetrimino[1].x] = 2;
-	map[tetris->tetrimino[2].y][tetris->tetrimino[2].x] = 2;
-	map[tetris->tetrimino[3].y][tetris->tetrimino[3].x] = 2;
+		for (int x = 0; x < 5; x++)
+		{
+			if ((map[pos.y + y][pos.x + x] + tetrimino[0][y][x]) > 9)
+				return (0);
+			
+		}
 	}
+	return (1);
+}
 
+void	putTetrimino(t_tetris *tetris)
+{
+	extern int map[H][W];
+	extern int tetrimino[2][5][5];
+
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] = tetrimino[0][y][x];
+			
+		}
+	}
+}
+
+void	killTetrimino(t_tetris *tetris)
+{
+	extern int map[H][W];
+	extern int tetrimino[2][5][5];
+	
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] -= tetrimino[0][y][x];
+			
+		}
+	}
 }

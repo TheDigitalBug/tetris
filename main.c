@@ -1,6 +1,25 @@
 
 #include "tetris.h"
 
+int tetrimino[2][5][5] =
+{
+	{
+		{0,0,9,0,0},
+		{0,0,9,0,0},
+		{0,0,9,0,0},
+		{0,0,9,0,0},
+		{0,0,0,0,0},
+	},
+	
+	{
+		{0,0,0,0,0},
+		{0,0,0,0,0},
+		{0,9,9,9,9},
+		{0,0,0,0,0},
+		{0,0,0,0,0},
+	}
+};
+
 
 int map[22][12] =
 {
@@ -40,8 +59,8 @@ int main(void)
 	tetris = (t_tetris *)malloc(sizeof(t_tetris));
 	sdlInit(tetris);
 	
-	tetris->tetriminoPos = (t_pos){5, 1};
-	tetris->tetriminoType = 1;
+	tetris->tetriminoPos = (t_pos){1, 1};
+
 	
 
 	while (!stop)
@@ -58,17 +77,13 @@ int main(void)
 //					tetris->pause = (tetris->pause == 1) ? 0 : 1;
 //				}
 //				else
-//				if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
-//					tetris->tetriminoPos = (t_pos){0, -1};
-//				else
-					if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN)
+				if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
+					tetris->tetriminoPos = (t_pos){0, -1};
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN)
 					delay = 200;
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT && tetris->tetriminoPos.x < 9)
-				{
-					printf("%d", tetris->tetriminoPos.x);
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT)
 					tetris->tetriminoPos.x++;
-				}
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && tetris->tetriminoPos.x > 1)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT)
 					tetris->tetriminoPos.x--;
 			}
 
@@ -76,16 +91,20 @@ int main(void)
 		
 		sdlRenderClear(tetris);
 		
-		if (tetris->tetriminoType == 1)
-			putTetriminoCube(tetris);
+		if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
+			tetris->tetriminoPos.y++;
+		
+		putTetrimino(tetris);
 		
 		drawMap(tetris);
 		
+		killTetrimino(tetris);
+
 		
 		SDL_RenderPresent(tetris->sdl.renderer);
 		SDL_Delay(delay);
 		delay = 500;
-		tetris->tetriminoPos.y++;
+
 		
 	}
 	sdlDestroy(tetris);
