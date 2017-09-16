@@ -139,10 +139,14 @@ int main(void)
 	tetris = (t_tetris *)malloc(sizeof(t_tetris));
 	sdlInit(tetris);
 	
-	tetris->tetriminoPos = (t_pos){5, 5};
+	tetris->tetriminoPos = (t_pos){5, 1};
 	tetris->tetriminoType = rand() % 12;
+	tetris->nextTetrimino = rand() % 12;
 	int random = (rand() * tetris->tetriminoType) / 200 + 55;
 	tetris->tetriminoColor = (SDL_Color){random / 4, random / 3, random / 2, 255};
+	tetris->score = 0;
+	tetris->scoreLines = 0;
+	tetris->pause = 0;
 
 	
 
@@ -154,20 +158,21 @@ int main(void)
 				stop = 1;
 			else if (tetris->sdl.e.type == SDL_KEYDOWN)
 			{
-//				if (tetris->sdl.e.key.keysym.sym == SDLK_SPACE)
-//				{
-//					putTextMessage(tetris, "Pause");
-//					tetris->pause = (tetris->pause == 1) ? 0 : 1;
-//				}
-//				else
-				if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
+				if (tetris->sdl.e.key.keysym.sym == SDLK_SPACE)
+				{
+					sdlRenderClear(tetris);
+					putTextMessage(tetris, "Pause", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
+					tetris->pause = (tetris->pause == 1) ? 0 : 1;
+					
+					SDL_RenderPresent(tetris->sdl.renderer);
+				}
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
 				{
 					if (tetris->tetriminoType % 4 == 3)
 						tetris->tetriminoType = (tetris->tetriminoType / 4) * 4;
 					else
 						tetris->tetriminoType++;
 				}
-				
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN)
 					delay = 50;
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y} ) == 1)
@@ -177,6 +182,9 @@ int main(void)
 			}
 
 		}
+		
+	if (tetris->pause == 0)
+	{
 		printf("%d\n", tetris->tetriminoType);
 		
 		sdlRenderClear(tetris);
@@ -188,6 +196,9 @@ int main(void)
 			putTetrimino(tetris);
 			
 			drawMap(tetris);
+			drawNextTetrimino(tetris);
+			setLivesLevel(tetris);
+			
 			
 			killTetrimino(tetris);
 		}
@@ -195,16 +206,18 @@ int main(void)
 		{
 			saveTetrimino(tetris);
 			deleteLine(tetris);
-			tetris->tetriminoPos = (t_pos){1, 1};
-			tetris->tetriminoType = rand() % 12;
+			tetris->tetriminoPos = (t_pos){5, 1};
+			tetris->tetriminoType = tetris->nextTetrimino;
+			tetris->nextTetrimino = rand() % 12;
 			random = (rand() * tetris->tetriminoType) / 200 + 55;
 			tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
 		}
-
+		
 		
 		SDL_RenderPresent(tetris->sdl.renderer);
 		SDL_Delay(delay);
 		delay = 500;
+	}
 
 		
 	}

@@ -31,9 +31,6 @@
 
 /* Begin PBXFileReference section */
 		8AD7C1B81F6D0CB3006FAEB6 /* tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tetris; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AD7C1D01F6D0CDC006FAEB6 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../SDL2_image.framework; sourceTree = "<group>"; };
-		8AD7C1D11F6D0CDC006FAEB6 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../SDL2_ttf.framework; sourceTree = "<group>"; };
-		8AD7C1D21F6D0CDC006FAEB6 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../SDL2.framework; sourceTree = "<group>"; };
 		8AD7C1D71F6D0D3D006FAEB6 /* drawMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drawMap.c; sourceTree = "<group>"; };
 		8AD7C1D81F6D0D3D006FAEB6 /* initSdl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = initSdl.c; sourceTree = "<group>"; };
 		8AD7C1D91F6D0D3D006FAEB6 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -87,9 +84,6 @@
 				8AD7C1DE1F6D0D8A006FAEB6 /* SDL2_image.framework */,
 				8AD7C1DF1F6D0D8A006FAEB6 /* SDL2_ttf.framework */,
 				8AD7C1E01F6D0D8A006FAEB6 /* SDL2.framework */,
-				8AD7C1D01F6D0CDC006FAEB6 /* SDL2_image.framework */,
-				8AD7C1D11F6D0CDC006FAEB6 /* SDL2_ttf.framework */,
-				8AD7C1D21F6D0CDC006FAEB6 /* SDL2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -4,7 +4,7 @@
 void	deleteLine(t_tetris *tetris)
 {
 	extern int	map[H][W];
-	extern int	tetrimino[2][5][5];
+	extern int	tetrimino[12][5][5];
 	int			sum;
 	
 	for (int y = H - 1; y > 1; y--)
@@ -29,6 +29,8 @@ void	deleteLine(t_tetris *tetris)
 				}
 			}
 			y = tmpy + 1;
+			tetris->scoreLines++;
+			printf("lines = %d\n", tetris->scoreLines);
 		}
 
 		

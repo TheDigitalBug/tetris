@@ -4,6 +4,7 @@
 void	sdlInit(t_tetris *tetris)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 
 	tetris->sdl.window = SDL_CreateWindow("tetris", 300, 100, WID, HEIG,
 			SDL_WINDOW_OPENGL);
@@ -17,7 +18,7 @@ void	sdlDestroy(t_tetris *tetris)
 {
 	SDL_DestroyRenderer(tetris->sdl.renderer);
 	SDL_DestroyWindow(tetris->sdl.window);
-
+	TTF_Quit();
 	SDL_Quit();
 }
 

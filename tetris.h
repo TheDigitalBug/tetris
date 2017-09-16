@@ -7,23 +7,26 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <SDL2/SDL.h>
-//# include <SDL2_ttf/SDL_ttf.h>
-//# include <SDL2_image/SDL_image.h>
-# define WID 12*30
-# define HEIG 22*30
-# define W WID / 30
-# define H HEIG / 30
+# include <SDL2_ttf/SDL_ttf.h>
+# define W 12
+# define H 22
+# define INFO 210
+# define WIDOFCUBE 30
+# define WID W*30 + INFO
+# define HEIG H*30
+
 
 typedef struct		s_sdl
 {
 	SDL_Window		*window;
 	SDL_Renderer		*renderer;
 	SDL_Event		e;
+	TTF_Font		*font;
 
 	
-//	SDL_Surface		*surfaceScore;
-//	SDL_Rect			rectScore;
-//	SDL_Texture		*textureScore;
+	SDL_Surface		*surfaceScoreLines;
+	SDL_Rect			rectScoreLines;
+	SDL_Texture		*textureScoreLines;
 }					t_sdl;
 
 typedef struct		s_pos
@@ -38,6 +41,10 @@ typedef struct		s_tetris
 	t_pos			tetriminoPos;
 	int				tetriminoType;
 	SDL_Color		tetriminoColor;
+	int				nextTetrimino;
+	int				score;
+	int				scoreLines;
+	int				pause;
 
 
 	
