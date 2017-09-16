@@ -1,7 +1,6 @@
 
 #include "tetris.h"
 
-
 int	checkTetrimino(t_tetris *tetris, t_pos pos)
 {
 	extern int map[H][W];
@@ -11,7 +10,7 @@ int	checkTetrimino(t_tetris *tetris, t_pos pos)
 	{
 		for (int x = 0; x < 5; x++)
 		{
-			if ((map[pos.y + y][pos.x + x] + tetrimino[0][y][x]) > 9)
+			if ((map[pos.y + y][pos.x + x] + tetrimino[tetris->tetriminoType][y][x]) > 9)
 				return (0);
 			
 		}
@@ -28,7 +27,7 @@ void	putTetrimino(t_tetris *tetris)
 	{
 		for (int x = 0; x < 5; x++)
 		{
-			map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] = tetrimino[0][y][x];
+				map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] += tetrimino[tetris->tetriminoType][y][x];
 			
 		}
 	}
@@ -43,8 +42,24 @@ void	killTetrimino(t_tetris *tetris)
 	{
 		for (int x = 0; x < 5; x++)
 		{
-			map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] -= tetrimino[0][y][x];
+			map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] -= tetrimino[tetris->tetriminoType][y][x];
 			
 		}
 	}
 }
+
+void	saveTetrimino(t_tetris *tetris)
+{
+	extern int map[H][W];
+	extern int tetrimino[2][5][5];
+	
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			if (tetrimino[tetris->tetriminoType][y][x] == 9)
+				map[tetris->tetriminoPos.y + y][tetris->tetriminoPos.x + x] = 3;
+		}
+	}
+}
+

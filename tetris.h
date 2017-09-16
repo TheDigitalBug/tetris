@@ -36,6 +36,7 @@ typedef struct		s_tetris
 {
 	t_sdl			sdl;
 	t_pos			tetriminoPos;
+	int				tetriminoType;
 
 
 	
@@ -48,6 +49,11 @@ typedef struct		s_tetris
 void	sdlInit(t_tetris *tetris);
 void	sdlDestroy(t_tetris *tetris);
 void	sdlRenderClear(t_tetris *tetris);
+
+void	putTetrimino(t_tetris *tetris);
+void	killTetrimino(t_tetris *tetris);
+int	checkTetrimino(t_tetris *tetris, t_pos pos);
+
 
 
 #endif

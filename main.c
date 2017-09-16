@@ -60,6 +60,7 @@ int main(void)
 	sdlInit(tetris);
 	
 	tetris->tetriminoPos = (t_pos){1, 1};
+	tetris->tetriminoType = rand() % 2;
 
 	
 
@@ -80,10 +81,10 @@ int main(void)
 				if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
 					tetris->tetriminoPos = (t_pos){0, -1};
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN)
-					delay = 200;
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT)
+					delay = 100;
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x++;
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x - 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x--;
 			}
 
@@ -92,13 +93,22 @@ int main(void)
 		sdlRenderClear(tetris);
 		
 		if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
+		{
 			tetris->tetriminoPos.y++;
-		
-		putTetrimino(tetris);
-		
-		drawMap(tetris);
-		
-		killTetrimino(tetris);
+			
+			putTetrimino(tetris);
+			
+			drawMap(tetris);
+			
+			killTetrimino(tetris);
+		}
+		else
+		{
+			saveTetrimino(tetris);
+			deleteLine(tetris);
+			tetris->tetriminoPos = (t_pos){1, 1};
+			tetris->tetriminoType = rand() % 2;
+		}
 
 		
 		SDL_RenderPresent(tetris->sdl.renderer);

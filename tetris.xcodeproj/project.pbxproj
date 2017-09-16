@@ -14,6 +14,7 @@
 		8AD7C1E21F6D0D8A006FAEB6 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD7C1DF1F6D0D8A006FAEB6 /* SDL2_ttf.framework */; };
 		8AD7C1E31F6D0D8A006FAEB6 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD7C1E01F6D0D8A006FAEB6 /* SDL2.framework */; };
 		8AD7C1E71F6D2862006FAEB6 /* putTetrimino.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1E61F6D2862006FAEB6 /* putTetrimino.c */; };
+		8AD7C1E91F6D9978006FAEB6 /* deleteLine.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		8AD7C1DF1F6D0D8A006FAEB6 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_ttf.framework; sourceTree = "<group>"; };
 		8AD7C1E01F6D0D8A006FAEB6 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		8AD7C1E61F6D2862006FAEB6 /* putTetrimino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = putTetrimino.c; sourceTree = "<group>"; };
+		8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deleteLine.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		8AD7C1AF1F6D0CB3006FAEB6 = {
 			isa = PBXGroup;
 			children = (
+				8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */,
 				8AD7C1E61F6D2862006FAEB6 /* putTetrimino.c */,
 				8AD7C1D71F6D0D3D006FAEB6 /* drawMap.c */,
 				8AD7C1D81F6D0D3D006FAEB6 /* initSdl.c */,
@@ -150,6 +153,7 @@
 			files = (
 				8AD7C1DB1F6D0D3D006FAEB6 /* drawMap.c in Sources */,
 				8AD7C1DC1F6D0D3D006FAEB6 /* initSdl.c in Sources */,
+				8AD7C1E91F6D9978006FAEB6 /* deleteLine.c in Sources */,
 				8AD7C1DD1F6D0D3D006FAEB6 /* main.c in Sources */,
 				8AD7C1E71F6D2862006FAEB6 /* putTetrimino.c in Sources */,
 			);
