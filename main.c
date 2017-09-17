@@ -288,7 +288,6 @@ int				main(void)
 		}
 		if (tetris->pause == 0)
 		{
-			sdlRenderClear(tetris);
 			if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
 			{
 				tetris->tetriminoPos.y++;
@@ -297,19 +296,21 @@ int				main(void)
 				drawNextTetrimino(tetris);
 				setLivesLevel(tetris);
 				killTetrimino(tetris);
+				SDL_RenderPresent(tetris->sdl.renderer);
+				sdlRenderClear(tetris);
+				SDL_Delay(delay);
 			}
 			else
 			{
 				saveTetrimino(tetris);
 				deleteLine(tetris);
-				tetris->tetriminoPos = (t_pos){5, 1};
+				tetris->tetriminoPos = (t_pos){3, 0};
 				tetris->tetriminoType = tetris->nextTetrimino;
 				tetris->nextTetrimino = rand() % 24;
 				random = (rand() * tetris->tetriminoType) / 200 + 55;
 				tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
 			}
-			SDL_RenderPresent(tetris->sdl.renderer);
-			SDL_Delay(delay);
+
 			delay = 500;
 		}
 	}
