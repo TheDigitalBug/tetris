@@ -1,7 +1,7 @@
 
 #include "tetris.h"
 
-int tetrimino[24][5][5] =
+int			tetrimino[24][5][5] =
 {
 	{//1
 		{0,0,9,0,0},
@@ -197,7 +197,7 @@ int tetrimino[24][5][5] =
 };
 
 
-int map[22][12] =
+int				map[22][12] =
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,0,0,0,0,0,0,0,0,0,0,1},
@@ -223,29 +223,30 @@ int map[22][12] =
 	{1,1,1,1,1,1,1,1,1,1,1,1},
 };
 
-
-int main(void)
+static void		initStartCond(t_tetris *tetris, int *stop, int *delay, int *random)
 {
-	int			stop;
-	t_tetris		*tetris;
-	int			delay = 500;
-	
-	stop = 0;
-
-	tetris = (t_tetris *)malloc(sizeof(t_tetris));
-	sdlInit(tetris);
-	
-	tetris->tetriminoPos = (t_pos){5, 1};
-	tetris->tetriminoType = rand() % 24;
-	tetris->nextTetrimino = rand() % 24;
-	int random = (rand() * tetris->tetriminoType) / 200 + 55;
-	tetris->tetriminoColor = (SDL_Color){random / 4, random / 3, random / 2, 255};
+	*stop = 0;
+	*delay = 500;
+	tetris->tetriminoPos = (t_pos){3, 0}; //start position
+	tetris->tetriminoType = rand() % 24; //rand 1s tetrimino
+	tetris->nextTetrimino = rand() % 24; //rand next tetrimino
+	*random = (rand() * tetris->tetriminoType) / 200 + 55; //rand color
+	tetris->tetriminoColor = (SDL_Color){*random / 4, *random / 3, *random / 2, 255};
 	tetris->score = 0;
 	tetris->scoreLines = 0;
 	tetris->pause = 0;
+}
 
+int				main(void)
+{
+	int			stop;
+	t_tetris		*tetris;
+	int			delay;
+	int			random;
 	
-
+	tetris = (t_tetris *)malloc(sizeof(t_tetris));
+	sdlInit(tetris);
+	initStartCond(tetris, &stop, &delay, &random);
 	while (!stop)
 	{
 		while (SDL_PollEvent(&(tetris->sdl.e)))
@@ -259,7 +260,6 @@ int main(void)
 					sdlRenderClear(tetris);
 					putTextMessage(tetris, "Pause", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
 					tetris->pause = (tetris->pause == 1) ? 0 : 1;
-					
 					SDL_RenderPresent(tetris->sdl.renderer);
 				}
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
@@ -285,46 +285,33 @@ int main(void)
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x - 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x--;
 			}
-
 		}
-		
-	if (tetris->pause == 0)
-	{
-		printf("%d\n", tetris->tetriminoType);
-		
-		sdlRenderClear(tetris);
-		
-		if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
+		if (tetris->pause == 0)
 		{
-			tetris->tetriminoPos.y++;
-			
-			putTetrimino(tetris);
-			
-			drawMap(tetris);
-			drawNextTetrimino(tetris);
-			setLivesLevel(tetris);
-			
-			
-			killTetrimino(tetris);
+			sdlRenderClear(tetris);
+			if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
+			{
+				tetris->tetriminoPos.y++;
+				putTetrimino(tetris);
+				drawMap(tetris);
+				drawNextTetrimino(tetris);
+				setLivesLevel(tetris);
+				killTetrimino(tetris);
+			}
+			else
+			{
+				saveTetrimino(tetris);
+				deleteLine(tetris);
+				tetris->tetriminoPos = (t_pos){5, 1};
+				tetris->tetriminoType = tetris->nextTetrimino;
+				tetris->nextTetrimino = rand() % 24;
+				random = (rand() * tetris->tetriminoType) / 200 + 55;
+				tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
+			}
+			SDL_RenderPresent(tetris->sdl.renderer);
+			SDL_Delay(delay);
+			delay = 500;
 		}
-		else
-		{
-			saveTetrimino(tetris);
-			deleteLine(tetris);
-			tetris->tetriminoPos = (t_pos){5, 1};
-			tetris->tetriminoType = tetris->nextTetrimino;
-			tetris->nextTetrimino = rand() % 24;
-			random = (rand() * tetris->tetriminoType) / 200 + 55;
-			tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
-		}
-		
-		
-		SDL_RenderPresent(tetris->sdl.renderer);
-		SDL_Delay(delay);
-		delay = 500;
-	}
-
-		
 	}
 	sdlDestroy(tetris);
 	return 0;

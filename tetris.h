@@ -12,8 +12,8 @@
 # define H 22
 # define INFO 210
 # define WIDOFCUBE 30
-# define WID W*30 + INFO
-# define HEIG H*30
+# define WID W * 30 + INFO
+# define HEIG H * 30
 
 typedef struct		s_sdl
 {
@@ -55,4 +55,8 @@ void					saveTetrimino(t_tetris *tetris);
 
 void					putTextMessage(t_tetris *tetris, char *str, SDL_Rect rect);
 void					drawNextTetrimino(t_tetris *tetris);
+
+void					drawMap(t_tetris *tetris);
+void					deleteLine(t_tetris *tetris);
+void					setLivesLevel(t_tetris *tetris);
 #endif
