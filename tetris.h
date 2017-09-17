@@ -15,15 +15,12 @@
 # define WID W*30 + INFO
 # define HEIG H*30
 
-
 typedef struct		s_sdl
 {
 	SDL_Window		*window;
 	SDL_Renderer		*renderer;
 	SDL_Event		e;
-	TTF_Font		*font;
-
-	
+	TTF_Font			*font;
 	SDL_Surface		*surfaceScoreLines;
 	SDL_Rect			rectScoreLines;
 	SDL_Texture		*textureScoreLines;
@@ -45,23 +42,17 @@ typedef struct		s_tetris
 	int				score;
 	int				scoreLines;
 	int				pause;
-
-
-	
-	
-	
 }					t_tetris;
 
+void					sdlInit(t_tetris *tetris);
+void					sdlDestroy(t_tetris *tetris);
+void					sdlRenderClear(t_tetris *tetris);
 
+int					checkTetrimino(t_tetris *tetris, t_pos pos);
+void					putTetrimino(t_tetris *tetris);
+void					killTetrimino(t_tetris *tetris);
+void					saveTetrimino(t_tetris *tetris);
 
-void	sdlInit(t_tetris *tetris);
-void	sdlDestroy(t_tetris *tetris);
-void	sdlRenderClear(t_tetris *tetris);
-
-void	putTetrimino(t_tetris *tetris);
-void	killTetrimino(t_tetris *tetris);
-int	checkTetrimino(t_tetris *tetris, t_pos pos);
-
-
-
+void					putTextMessage(t_tetris *tetris, char *str, SDL_Rect rect);
+void					drawNextTetrimino(t_tetris *tetris);
 #endif
