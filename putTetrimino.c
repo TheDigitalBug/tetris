@@ -13,7 +13,17 @@ int	checkTetrimino(t_tetris *tetris, t_pos pos)
 		for (x = 0; x < 5; x++)
 		{
 			if ((map[pos.y + y][pos.x + x] + tetrimino[tetris->tetriminoType][y][x]) > 9)
+			{
+				if (y == 0)
+				{
+					putTextMessage(tetris, "YOU LOSE", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
+					SDL_RenderPresent(tetris->sdl.renderer);
+					SDL_Delay(1000);
+					sdlDestroy(tetris);
+					exit(0);
+				}
 				return (0);
+			}
 		}
 	}
 	return (1);
