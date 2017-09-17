@@ -4,7 +4,7 @@
 void	drawMap(t_tetris *tetris)
 {
 	extern int	map[H][W];
-	extern int	tetrimino[12][5][5];
+	extern int	tetrimino[24][5][5];
 	
 	
 
@@ -72,7 +72,7 @@ void	putTextMessage(t_tetris *tetris, char *str, SDL_Rect rect)
 
 void	drawNextTetrimino(t_tetris *tetris)
 {
-	extern int	tetrimino[12][5][5];
+	extern int	tetrimino[24][5][5];
 	
 	putTextMessage(tetris, "NEXT", (SDL_Rect){WID - INFO + WIDOFCUBE + 25, 0, INFO / 2, WIDOFCUBE});
 	

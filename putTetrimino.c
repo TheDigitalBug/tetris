@@ -4,7 +4,7 @@
 int	checkTetrimino(t_tetris *tetris, t_pos pos)
 {
 	extern int map[H][W];
-	extern int tetrimino[2][5][5];
+	extern int tetrimino[24][5][5];
 	
 	for (int y = 0; y < 5; y++)
 	{
@@ -21,7 +21,7 @@ int	checkTetrimino(t_tetris *tetris, t_pos pos)
 void	putTetrimino(t_tetris *tetris)
 {
 	extern int map[H][W];
-	extern int tetrimino[2][5][5];
+	extern int tetrimino[24][5][5];
 
 	for (int y = 0; y < 5; y++)
 	{
@@ -36,7 +36,7 @@ void	putTetrimino(t_tetris *tetris)
 void	killTetrimino(t_tetris *tetris)
 {
 	extern int map[H][W];
-	extern int tetrimino[2][5][5];
+	extern int tetrimino[24][5][5];
 	
 	for (int y = 0; y < 5; y++)
 	{
@@ -51,7 +51,7 @@ void	killTetrimino(t_tetris *tetris)
 void	saveTetrimino(t_tetris *tetris)
 {
 	extern int map[H][W];
-	extern int tetrimino[2][5][5];
+	extern int tetrimino[24][5][5];
 	
 	for (int y = 0; y < 5; y++)
 	{

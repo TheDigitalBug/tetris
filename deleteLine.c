@@ -4,7 +4,7 @@
 void	deleteLine(t_tetris *tetris)
 {
 	extern int	map[H][W];
-	extern int	tetrimino[12][5][5];
+	extern int	tetrimino[24][5][5];
 	int			sum;
 	
 	for (int y = H - 1; y > 1; y--)
