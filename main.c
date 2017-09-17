@@ -243,6 +243,7 @@ int				main(void)
 	t_tetris		*tetris;
 	int			delay;
 	int			random;
+	int			introflag = 0;
 	
 	tetris = (t_tetris *)malloc(sizeof(t_tetris));
 	sdlInit(tetris);
@@ -286,6 +287,8 @@ int				main(void)
 					tetris->tetriminoPos.x--;
 			}
 		}
+		if(introflag == 0)
+			intro(tetris, &introflag);
 		if (tetris->pause == 0)
 		{
 			if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
@@ -310,7 +313,6 @@ int				main(void)
 				random = (rand() * tetris->tetriminoType) / 200 + 55;
 				tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
 			}
-
 			delay = 500;
 		}
 	}

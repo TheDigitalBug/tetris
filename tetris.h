@@ -59,4 +59,6 @@ void					drawNextTetrimino(t_tetris *tetris);
 void					drawMap(t_tetris *tetris);
 void					deleteLine(t_tetris *tetris);
 void					setLivesLevel(t_tetris *tetris);
+
+void					intro(t_tetris *tetris, int *intro);
 #endif

@@ -17,6 +17,7 @@
 		8AD7C1E91F6D9978006FAEB6 /* deleteLine.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */; };
 		8AD7C1EB1F6E5850006FAEB6 /* drawNextTetrimino.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1EA1F6E5850006FAEB6 /* drawNextTetrimino.c */; };
 		8AD7C1ED1F6E58AA006FAEB6 /* putTextMsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1EC1F6E58AA006FAEB6 /* putTextMsg.c */; };
+		8AD7C1EF1F6EE67A006FAEB6 /* intro.c in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7C1EE1F6EE67A006FAEB6 /* intro.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,7 @@
 		8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deleteLine.c; sourceTree = "<group>"; };
 		8AD7C1EA1F6E5850006FAEB6 /* drawNextTetrimino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drawNextTetrimino.c; sourceTree = "<group>"; };
 		8AD7C1EC1F6E58AA006FAEB6 /* putTextMsg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = putTextMsg.c; sourceTree = "<group>"; };
+		8AD7C1EE1F6EE67A006FAEB6 /* intro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = intro.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		8AD7C1AF1F6D0CB3006FAEB6 = {
 			isa = PBXGroup;
 			children = (
+				8AD7C1EE1F6EE67A006FAEB6 /* intro.c */,
 				8AD7C1EC1F6E58AA006FAEB6 /* putTextMsg.c */,
 				8AD7C1EA1F6E5850006FAEB6 /* drawNextTetrimino.c */,
 				8AD7C1E81F6D9978006FAEB6 /* deleteLine.c */,
@@ -155,6 +158,7 @@
 				8AD7C1DB1F6D0D3D006FAEB6 /* drawMap.c in Sources */,
 				8AD7C1ED1F6E58AA006FAEB6 /* putTextMsg.c in Sources */,
 				8AD7C1DC1F6D0D3D006FAEB6 /* initSdl.c in Sources */,
+				8AD7C1EF1F6EE67A006FAEB6 /* intro.c in Sources */,
 				8AD7C1E91F6D9978006FAEB6 /* deleteLine.c in Sources */,
 				8AD7C1DD1F6D0D3D006FAEB6 /* main.c in Sources */,
 				8AD7C1E71F6D2862006FAEB6 /* putTetrimino.c in Sources */,
