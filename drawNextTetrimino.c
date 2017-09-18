@@ -22,11 +22,10 @@ void	drawNextTetrimino(t_tetris *tetris)
 			}
 			else if (tetrimino[tetris->nextTetrimino][y][x] == 9)
 			{
-				SDL_SetRenderDrawColor(tetris->sdl.renderer, 70, 70, 70, 255);
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, 75, 50, 50, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
-				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 40, 40, 255);
+				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 4, rect.y + 4, WIDOFCUBE-8, WIDOFCUBE-8}));
 			}
 			rect.x += WIDOFCUBE;
 			rect = (SDL_Rect) {rect.x, rect.y, rect.h, rect.w};

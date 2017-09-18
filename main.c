@@ -258,12 +258,13 @@ int				main(void)
 			{
 				if (tetris->sdl.e.key.keysym.sym == SDLK_SPACE)
 				{
-					sdlRenderClear(tetris);
+					
 					putTextMessage(tetris, "Pause", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
 					tetris->pause = (tetris->pause == 1) ? 0 : 1;
 					SDL_RenderPresent(tetris->sdl.renderer);
+					sdlRenderClear(tetris);
 				}
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_UP)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_UP && tetris->pause == 0)
 				{
 					int tmp = tetris->tetriminoType;
 					if (tetris->tetriminoType % 4 == 3)
@@ -279,11 +280,11 @@ int				main(void)
 							tetris->tetriminoType = tmp;
 					}
 				}
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN && tetris->pause == 0)
 					delay = 50;
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y} ) == 1)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_RIGHT && tetris->pause == 0 && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x + 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x++;
-				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x - 1, tetris->tetriminoPos.y} ) == 1)
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && tetris->pause == 0 && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x - 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x--;
 			}
 		}
@@ -291,7 +292,7 @@ int				main(void)
 			intro(tetris, &introflag);
 		if (tetris->pause == 0)
 		{
-			if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1} ) == 1)
+			if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1}) == 1)
 			{
 				tetris->tetriminoPos.y++;
 				putTetrimino(tetris);

@@ -24,24 +24,23 @@ void	drawMap(t_tetris *tetris)
 			{
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 			}
 			else if (map[y][x] == 3) // saved tetrimino on map
 			{
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, 75, 50, 50, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
-				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 40, 40, 255);
+				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 4, rect.y + 4, WIDOFCUBE-8, WIDOFCUBE-8}));
 			}
 			else if (map[y][x] == 9) // tetrimino
 			{
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r, tetris->tetriminoColor.g, tetris->tetriminoColor.b, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
-				SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
-				SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r * 0.8, tetris->tetriminoColor.g * 0.8, tetris->tetriminoColor.b * 0.8, 255);
+				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 4, rect.y + 4, WIDOFCUBE-8, WIDOFCUBE-8}));
 			}
+			SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
+			SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
 			rect.x += WIDOFCUBE;
 			rect = (SDL_Rect) {rect.x, rect.y, rect.h, rect.w};
 		}
