@@ -1,15 +1,15 @@
 
-NAME = pacman
+NAME = tetris
 
 CC = gcc
 
 CFLAGS =  -F. -Wall -Werror -Wextra
 
-SDL_FLAGS = -framework SDL2 -framework SDL2_ttf -framework SDL2_image
+SDL_FLAGS = -framework SDL2 -framework SDL2_ttf
 
-OBJ = checkPosition.o initSdl.o main.o putPacman.o drawMap.o intro.o putGhost.o putText.o
+OBJ = deleteLine.o initSdl.o putTetrimino.o drawMap.o intro.o putTextMsg.o drawNextTetrimino.o main.o
 
-HEADER = pacman.h
+HEADER = tetris
 
 all : $(NAME)
 
@@ -26,6 +26,5 @@ re: fclean all
 
 sdl2:
 	cp -r SDL2_ttf.framework ~/Library/Frameworks/
-	cp -r SDL2_image.framework ~/Library/Frameworks/
 	cp -r SDL2.framework ~/Library/Frameworks/
 
