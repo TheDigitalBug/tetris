@@ -53,7 +53,6 @@ void	setLivesLevel(t_tetris *tetris)
 	char buf[50] = "Lines ";
 	
 	sprintf(buf + 6, "%d", tetris->scoreLines);
-	tetris->sdl.font = TTF_OpenFont("arcadeclassic/ARCADECLASSIC.TTF", 22);
 	tetris->sdl.surfaceScoreLines = TTF_RenderText_Solid(tetris->sdl.font, buf, (SDL_Color){255, 255, 255, 255});
 	tetris->sdl.textureScoreLines = SDL_CreateTextureFromSurface(tetris->sdl.renderer, tetris->sdl.surfaceScoreLines);
 	tetris->sdl.rectScoreLines.x = WID - INFO + WIDOFCUBE;
@@ -61,4 +60,6 @@ void	setLivesLevel(t_tetris *tetris)
 	tetris->sdl.rectScoreLines.w = 150;
 	tetris->sdl.rectScoreLines.h = WIDOFCUBE;
 	SDL_RenderCopy(tetris->sdl.renderer, tetris->sdl.textureScoreLines, NULL, &(tetris->sdl.rectScoreLines));
+	SDL_DestroyTexture(tetris->sdl.textureScoreLines);
+	SDL_FreeSurface(tetris->sdl.surfaceScoreLines);
 }

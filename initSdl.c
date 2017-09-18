@@ -12,6 +12,7 @@ void	sdlInit(t_tetris *tetris)
 			SDL_RENDERER_ACCELERATED);
 	SDL_SetRenderDrawColor(tetris->sdl.renderer, 0, 0, 0, 255);
 	SDL_RenderClear(tetris->sdl.renderer);
+	tetris->sdl.font = TTF_OpenFont("arcadeclassic/ARCADECLASSIC.TTF", 22);
 }
 
 void	sdlDestroy(t_tetris *tetris)
