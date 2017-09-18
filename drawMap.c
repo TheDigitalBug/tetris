@@ -50,10 +50,9 @@ void	drawMap(t_tetris *tetris)
 
 void	setLivesLevel(t_tetris *tetris)
 {
-	char buf[50] = {0};
+	char buf[50] = "Lines ";
 	
-	strcat(buf, "Lines ");
-	SDL_itoa(tetris->scoreLines, buf + 6, 10);
+	sprintf(buf + 6, "%d", tetris->scoreLines);
 	tetris->sdl.font = TTF_OpenFont("arcadeclassic/ARCADECLASSIC.TTF", 22);
 	tetris->sdl.surfaceScoreLines = TTF_RenderText_Solid(tetris->sdl.font, buf, (SDL_Color){255, 255, 255, 255});
 	tetris->sdl.textureScoreLines = SDL_CreateTextureFromSurface(tetris->sdl.renderer, tetris->sdl.surfaceScoreLines);
