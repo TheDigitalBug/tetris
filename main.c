@@ -244,6 +244,7 @@ int				main(void)
 	int			delay;
 	int			random;
 	int			introflag = 0;
+	int			currentType;
 	
 	tetris = (t_tetris *)malloc(sizeof(t_tetris));
 	sdlInit(tetris);
@@ -266,19 +267,13 @@ int				main(void)
 				}
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_UP && tetris->pause == 0)
 				{
-					int tmp = tetris->tetriminoType;
+					currentType = tetris->tetriminoType;
 					if (tetris->tetriminoType % 4 == 3)
-					{
 						tetris->tetriminoType = (tetris->tetriminoType / 4) * 4;
-						if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y} ) == 0)
-							tetris->tetriminoType = tmp;
-					}
 					else
-					{
 						tetris->tetriminoType++;
-						if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y} ) == 0)
-							tetris->tetriminoType = tmp;
-					}
+					if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y} ) == 0)
+						tetris->tetriminoType = currentType;
 				}
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_DOWN && tetris->pause == 0)
 					delay = 50;
