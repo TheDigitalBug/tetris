@@ -14,7 +14,7 @@ int	checkTetrimino(t_tetris *tetris, t_pos pos)
 		{
 			if ((map[pos.y + y][pos.x + x] + tetrimino[tetris->tetriminoType][y][x]) > 9)
 			{
-				if (y == 0)
+				if (pos.y + y == 0)
 				{
 					putTextMessage(tetris, "YOU LOSE", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
 					SDL_RenderPresent(tetris->sdl.renderer);
