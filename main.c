@@ -301,6 +301,16 @@ int				main(void)
 			}
 			else
 			{
+				if (checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x, tetris->tetriminoPos.y + 1}) == 0 && (tetris->tetriminoPos.x == 3 && tetris->tetriminoPos.y == 0))
+				{
+					SDL_RenderPresent(tetris->sdl.renderer);
+					sdlRenderClear(tetris);
+					putTextMessage(tetris, "YOU LOSE", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
+					SDL_RenderPresent(tetris->sdl.renderer);
+					SDL_Delay(1000);
+					sdlDestroy(tetris);
+					exit(0);
+				}
 				saveTetrimino(tetris);
 				deleteLine(tetris);
 				tetris->tetriminoPos = (t_pos){3, 0};
