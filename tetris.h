@@ -39,7 +39,7 @@ typedef struct		s_tetris
 	int				tetriminoType;
 	SDL_Color		tetriminoColor;
 	int				nextTetrimino;
-	int				score;
+	int				delay;
 	int				scoreLines;
 	int				pause;
 }					t_tetris;

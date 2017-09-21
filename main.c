@@ -232,9 +232,9 @@ static void		initStartCond(t_tetris *tetris, int *stop, int *delay, int *random)
 	tetris->nextTetrimino = rand() % 24; //rand next tetrimino
 	*random = (rand() * tetris->tetriminoType) / 200 + 55; //rand color
 	tetris->tetriminoColor = (SDL_Color){*random / 4, *random / 3, *random / 2, 255};
-	tetris->score = 0;
 	tetris->scoreLines = 0;
 	tetris->pause = 0;
+	tetris->delay = 500;
 }
 
 int				main(void)
@@ -281,6 +281,8 @@ int				main(void)
 					tetris->tetriminoPos.x++;
 				else if (tetris->sdl.e.key.keysym.sym == SDLK_LEFT && tetris->pause == 0 && checkTetrimino(tetris, (t_pos){tetris->tetriminoPos.x - 1, tetris->tetriminoPos.y} ) == 1)
 					tetris->tetriminoPos.x--;
+				else if (tetris->sdl.e.key.keysym.sym == SDLK_1)
+					tetris->delay = (tetris->delay == 200) ? 500 : 200;
 			}
 		}
 		if(introflag == 0)
@@ -319,7 +321,7 @@ int				main(void)
 				random = (rand() * tetris->tetriminoType) / 200 + 55;
 				tetris->tetriminoColor = (SDL_Color){75, random / 3, random / 2, 255};
 			}
-			delay = 500;
+			delay = tetris->delay;
 		}
 	}
 	sdlDestroy(tetris);
