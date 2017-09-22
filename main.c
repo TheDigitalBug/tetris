@@ -196,7 +196,6 @@ int			tetrimino[24][5][5] =
 	}
 };
 
-
 int				map[22][12] =
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1},
@@ -259,7 +258,6 @@ int				main(void)
 			{
 				if (tetris->sdl.e.key.keysym.sym == SDLK_SPACE)
 				{
-					
 					putTextMessage(tetris, "Pause", (SDL_Rect){(WID - INFO) / 2, HEIG / 2 - WIDOFCUBE, INFO, WIDOFCUBE * 2});
 					tetris->pause = (tetris->pause == 1) ? 0 : 1;
 					SDL_RenderPresent(tetris->sdl.renderer);

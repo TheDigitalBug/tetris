@@ -37,7 +37,9 @@ void	drawMap(t_tetris *tetris)
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r, tetris->tetriminoColor.g, tetris->tetriminoColor.b, 255);
 				SDL_RenderFillRect(tetris->sdl.renderer, &rect);
 				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r * 0.8, tetris->tetriminoColor.g * 0.8, tetris->tetriminoColor.b * 0.8, 255);
-				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 4, rect.y + 4, WIDOFCUBE-8, WIDOFCUBE-8}));
+				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 4, rect.y + 4, WIDOFCUBE - 8, WIDOFCUBE - 8}));
+				SDL_SetRenderDrawColor(tetris->sdl.renderer, tetris->tetriminoColor.r * 0.4, tetris->tetriminoColor.g * 0.4, tetris->tetriminoColor.b * 0.4, 255);
+				SDL_RenderFillRect(tetris->sdl.renderer, &((SDL_Rect) {rect.x + 12, rect.y + 12, WIDOFCUBE - 24, WIDOFCUBE - 24}));
 			}
 			SDL_SetRenderDrawColor(tetris->sdl.renderer, 50, 50, 50, 255);
 			SDL_RenderDrawRect(tetris->sdl.renderer, &rect);
@@ -51,7 +53,7 @@ void	drawMap(t_tetris *tetris)
 void	setLivesLevel(t_tetris *tetris)
 {
 	char buf[50] = "Lines ";
-	
+
 	sprintf(buf + 6, "%d", tetris->scoreLines);
 	tetris->sdl.surfaceScoreLines = TTF_RenderText_Solid(tetris->sdl.font, buf, (SDL_Color){255, 255, 255, 255});
 	tetris->sdl.textureScoreLines = SDL_CreateTextureFromSurface(tetris->sdl.renderer, tetris->sdl.surfaceScoreLines);
